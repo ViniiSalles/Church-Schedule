@@ -26,6 +26,7 @@ jobs:
       after_success:
         - echo "Testes do servidor concluídos com sucesso!"
         - cat coverage/lcov.info 2>/dev/null || echo "Coverage report gerado"
+        - curl -X POST https://api.render.com/deploy/srv-d4mevce3jp1c739sbrpg?key=-3UCk1ZKPkw || echo "Falha ao acionar o webhook de deploy"
 
     # Job para o cliente
     - name: "Client - Build"
