@@ -13,7 +13,7 @@ maneira bem-sucedida. Porém, um líder não sabe qual como é a escala do outro
 uma pessoa ser escalada em dois ministérios diferentes no mesmo dia e os demais obreiros
 não saberem quem está escalado em outros ministérios no mesmo dia
 
-A solução seria um software capaz de gerenciar e unificar tais informações. Para o auxilio 
+A solução seria um software capaaaaaz de gerenciar e unificar tais informações. Para o auxilio 
 dos Líderes e dos obreiros+
 
 
