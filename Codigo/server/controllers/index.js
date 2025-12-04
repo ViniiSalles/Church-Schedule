@@ -14,9 +14,9 @@ if (process.env.POSTGRES_HOST === "localhost") {
     password: process.env.POSTGRES_PASSWORD,
     port: parseInt(process.env.DATABASE_PORT || "5432"),
     ssl: false,
-    max: 20,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
+    max: 10,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 5000,
   };
 } else {
   // Conexão remota (Neon/Vercel)
@@ -27,9 +27,9 @@ if (process.env.POSTGRES_HOST === "localhost") {
     password: process.env.POSTGRES_PASSWORD,
     port: parseInt(process.env.DATABASE_PORT || "5432"),
     ssl: { rejectUnauthorized: false },
-    max: 20,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
+    max: 10,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 5000,
   };
 }
 
@@ -37,6 +37,10 @@ const pool = new Pool(poolConfig);
 
 // Tratamento de erros de conexão
 pool.on("error", (err) => {
+  // Ignorar erros de terminação do banco de dados durante testes
+  if (err.code === 'XX000' && err.message?.includes('db_termination')) {
+    return;
+  }
   console.error("Unexpected error on idle client", err);
 });
 
